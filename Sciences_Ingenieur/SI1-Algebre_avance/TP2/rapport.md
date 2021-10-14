@@ -42,7 +42,7 @@ def Lagrange(X, x, k):
 
 ## 4. Résultats
 
-Finalement, le script génère ensuite les valeurs exactes et estimées d'un grand nombre de point et affiche ensuite les deux courbes obtenues.
+Finalement, le script génère les valeurs exactes et estimées d'un grand nombre de point et affiche ensuite les deux courbes obtenues.
 
 Les résultats suivant sont obtenus par interpolations de la fonction sinus par un polynôme de degré n :
 
