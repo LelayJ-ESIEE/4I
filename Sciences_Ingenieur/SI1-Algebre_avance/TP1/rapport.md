@@ -1,6 +1,6 @@
 # TP1
 
-Le script [src.py](google.com) prend en entrée une fonction f ainsi que les bornes d'un intervalle et le nombre de points à calculer sur cet intervalle, avant d'évaluer un polynôme de degré maximum n passant par ces points.
+Le script [src.py](https://github.com/LelayJ-ESIEE/4I/blob/master/Sciences_Ingenieur/SI1-Algebre_avance/TP1/src.py) prend en entrée une fonction f ainsi que les bornes d'un intervalle et le nombre de points à calculer sur cet intervalle, avant d'évaluer un polynôme de degré maximum n passant par ces points.
 
 ## 1. Paramétrage
 
