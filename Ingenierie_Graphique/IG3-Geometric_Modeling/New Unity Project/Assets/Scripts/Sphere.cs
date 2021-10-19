@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Sphere
 {
-    Vector3 center;
-    float radius;
+    public Vector3 center;
+    public float radius;
 
     public Sphere(Vector3 center, float radius)
     {

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Cylinder
 {
-    Vector3 p1, p2;
-    float radius;
+    public Vector3 p1, p2;
+    public float radius;
 
     public Cylinder(Vector3 p1, Vector3 p2, float radius)
     {

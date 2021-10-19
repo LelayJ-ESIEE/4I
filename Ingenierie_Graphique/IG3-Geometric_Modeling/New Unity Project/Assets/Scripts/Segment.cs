@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Segment
 {
-    Vector3 p1, p2;
+    public Vector3 p1, p2;
 
     public Segment(Vector3 p1, Vector3 p2)
     {
