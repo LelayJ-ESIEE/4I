@@ -17,30 +17,30 @@ public class MeshGenerator : MonoBehaviour
         // m_Mf.sharedMesh = CreateQuadXZ(new Vector3(4, 0, 2));
         // m_Mf.sharedMesh = CreateStripXZ(new Vector3(4, 0, 2), 4);
         // m_Mf.sharedMesh = CreatePlane(new Vector3(4, 0, 2), 8, 2);
-        m_Mf.sharedMesh = WrapNormalizedPlane(20, 10,
-            //(kX, kZ) => new Vector3(kX, 0, kZ)
-            /*(kX, kZ) => {
-                float theta = kX * 2 * Mathf.PI;
-                float z = 4 * kZ;
-                float rho = 2;
-                return new Vector3(rho * Mathf.Cos(theta), z, rho * Mathf.Sin(theta));
+        m_Mf.sharedMesh = WrapNormalizedPlane(200, 100,
+        //(kX, kZ) => new Vector3(kX, 0, kZ)
+        //(kX, kZ) => {
+        //    float theta = kX * 2 * Mathf.PI;
+        //    float y = 4 * kZ;
+        //    float rho = 2;
+        //    return new Vector3(rho * Mathf.Cos(theta), y, rho * Mathf.Sin(theta));
 
-            }*/
-            /*(kX, kZ) => {
-                float theta = kX * 2 * Mathf.PI;
-                float phi = kZ * Mathf.PI;
-                float rho = 2;
-                return new Vector3(rho * Mathf.Cos(theta) * Mathf.Sin(phi), rho * Mathf.Sin(phi), rho * Mathf.Sin(theta) * Mathf.Sin(phi));
-
-            }*/
-            (kX, kZ) => {
-                float theta = kX * 2 * Mathf.PI;
-                float phi = (1-kZ) * Mathf.PI;
-                float rho = 2;
-                return new Vector3(rho * Mathf.Cos(theta) * Mathf.Sin(phi), rho * Mathf.Sin(phi), rho * Mathf.Sin(theta) * Mathf.Sin(phi));
-
-            }
-            );
+        //}
+        //(kX, kZ) =>
+        //{
+        //    float rho = 2;
+        //    float theta = kX * 2 * Mathf.PI;
+        //    float phi = kZ * Mathf.PI;
+        //    return rho * new Vector3(Mathf.Cos(theta) * Mathf.Sin(phi), Mathf.Cos(phi), Mathf.Sin(theta) * Mathf.Sin(phi));
+        //}
+        (kX, kZ) =>
+        {
+            float rho = 2;
+            float theta = kX * 2 * Mathf.PI;
+            float phi = (1 - kZ) * Mathf.PI;
+            return rho * new Vector3(Mathf.Cos(theta) * Mathf.Sin(phi), Mathf.Cos(phi), Mathf.Sin(theta) * Mathf.Sin(phi));
+        }
+        );
     }
 
     Mesh CreateTriangle()
