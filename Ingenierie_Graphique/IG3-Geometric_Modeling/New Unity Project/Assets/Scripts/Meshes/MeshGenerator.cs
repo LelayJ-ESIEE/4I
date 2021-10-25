@@ -13,33 +13,69 @@ public class MeshGenerator : MonoBehaviour
     void Awake()
     {
         m_Mf = GetComponent<MeshFilter>();
+        
+        // Explicits
         // m_Mf.sharedMesh = CreateTriangle();
         // m_Mf.sharedMesh = CreateQuadXZ(new Vector3(4, 0, 2));
         // m_Mf.sharedMesh = CreateStripXZ(new Vector3(4, 0, 2), 4);
         // m_Mf.sharedMesh = CreatePlane(new Vector3(4, 0, 2), 8, 2);
+        
+        // Normalized Wraped Planes
         m_Mf.sharedMesh = WrapNormalizedPlane(200, 100,
-        //(kX, kZ) => new Vector3(kX, 0, kZ)
-        //(kX, kZ) => {
-        //    float theta = kX * 2 * Mathf.PI;
-        //    float y = 4 * kZ;
-        //    float rho = 2;
-        //    return new Vector3(rho * Mathf.Cos(theta), y, rho * Mathf.Sin(theta));
+            // Plane
+            //(kX, kZ) => new Vector3(kX, 0, kZ)
 
-        //}
-        //(kX, kZ) =>
-        //{
-        //    float rho = 2;
-        //    float theta = kX * 2 * Mathf.PI;
-        //    float phi = kZ * Mathf.PI;
-        //    return rho * new Vector3(Mathf.Cos(theta) * Mathf.Sin(phi), Mathf.Cos(phi), Mathf.Sin(theta) * Mathf.Sin(phi));
-        //}
-        (kX, kZ) =>
-        {
-            float rho = 2;
-            float theta = kX * 2 * Mathf.PI;
-            float phi = (1 - kZ) * Mathf.PI;
-            return rho * new Vector3(Mathf.Cos(theta) * Mathf.Sin(phi), Mathf.Cos(phi), Mathf.Sin(theta) * Mathf.Sin(phi));
-        }
+            // Cylinder
+            //(kX, kZ) => {
+            //    float theta = kX * 2 * Mathf.PI;
+            //    float y = 4 * kZ;
+            //    float rho = 2;
+            //    return new Vector3(rho * Mathf.Cos(theta), y, rho * Mathf.Sin(theta));
+            //}
+
+            // Inner Sphere
+            //(kX, kZ) =>
+            //{
+            //    float rho = 2;
+            //    float theta = kX * 2 * Mathf.PI;
+            //    float phi = kZ * Mathf.PI;
+            //    return rho * new Vector3(Mathf.Cos(theta) * Mathf.Sin(phi), Mathf.Cos(phi), Mathf.Sin(theta) * Mathf.Sin(phi));
+            //}
+
+            // Sphere
+            (kX, kZ) =>
+            {
+                float rho = 2;
+                float theta = kX * 2 * Mathf.PI;
+                float phi = (1 - kZ) * Mathf.PI;
+                return rho * new Vector3(Mathf.Cos(theta) * Mathf.Sin(phi), Mathf.Cos(phi), Mathf.Sin(theta) * Mathf.Sin(phi));
+            }
+
+            // Ring
+
+            // Helix
+
+            // Funnel Helix
+
+            // Closed Cylinder
+
+            // Torus
+
+            // Unregular Rorus
+
+            // Radial Ripple
+
+            // Inverted Fir
+
+            // Crenellated Inverted Fir
+
+            // Paraboloid
+
+            // Closed Star-based Prism
+
+            // Tube
+
+            // Egg
         );
     }
 
