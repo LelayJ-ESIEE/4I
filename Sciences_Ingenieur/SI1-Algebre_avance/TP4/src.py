@@ -87,7 +87,6 @@ delta = 4.0/3.0 * math.tan(math.pi / 8) # For circle
 # L = [(0, 2), (1, 2), (1, 0), (1, 0), (0, 0), (-1, 0), (-1, 0), (-1, 2), (0, 2)] # Egg
 # L = [(0,0), (-0.3, 0), (-0.3, 0.3)] # Quarter of circle
 # L = [(0,0), (-0.5, 0), (-0.5, 0.8), (0,0.8), (0.5, 0.8), (0.5, 0), (0,0)] # Approximated circle
-# L = [(0, -1), (-delta, -1), (-1, -delta), (-1, 0), (-1, delta), (-delta, 1), (0, 1), (delta, 1), (1, delta), (1, 0), (1, -delta), (delta, -1), (0, -1)] # Another approximated circle (needs delta)
 
 # list of lists of points (complex_draw)
 # L = [[(0,0), (1,1), (2,0)]] # Conic
