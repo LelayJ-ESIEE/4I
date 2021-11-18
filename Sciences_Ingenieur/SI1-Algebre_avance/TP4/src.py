@@ -48,6 +48,7 @@ def simple_draw():
 
     plt.show()
 
+# Plot result (multiple curves)
 def complex_draw():
     global n
     fig, ax = plt.subplots()
