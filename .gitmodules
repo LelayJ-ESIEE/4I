@@ -4,3 +4,6 @@
 [submodule "Ingenierie_Graphique/IG2-Traitement_Analyse_Image/labs-jules"]
 	path = Ingenierie_Graphique/IG2-Traitement_Analyse_Image/labs-jules
 	url = https://github.com/ESIEECourses/labs-jules.git
+[submodule "RV"]
+	path = RV
+	url = https://github.com/LelayJ-ESIEE/RV.git
