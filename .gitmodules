@@ -1,3 +1,6 @@
 [submodule "Ingenierie_Graphique/IG2-Traitement_Analyse_Image/labs-benoit-davy"]
 	path = Ingenierie_Graphique/IG2-Traitement_Analyse_Image/labs-benoit-davy
 	url = https://github.com/ESIEECourses/labs-benoit-davy.git
+[submodule "Ingenierie_Graphique/IG2-Traitement_Analyse_Image/labs-jules"]
+	path = Ingenierie_Graphique/IG2-Traitement_Analyse_Image/labs-jules
+	url = https://github.com/ESIEECourses/labs-jules.git
