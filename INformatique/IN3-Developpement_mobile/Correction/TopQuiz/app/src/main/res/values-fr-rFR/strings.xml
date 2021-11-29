@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="welcomeTopQuiz">Bienvenue dans TopQuiz. Quel est votre prénom ?</string>
+<string name="app_name">TopQuiz</string>
+<string name="question1">Quand a été créé Android ?</string>
+<string name="response11">1999</string>
+<string name="response12">2001</string>
+<string name="response13">2007</string>
+<string name="response14">2010</string>
+<string name="question2">Que permet un fichier layout ?</string>
+<string name="response21">De changer la langue d\'utilisation du téléphone</string>
+<string name="response22">De stocker les préférences de l\'utilisateur</string>
+<string name="response23">D\'organiser l\'affichage des différents éléments graphiques qui seront présentés à l\'utilisateur</string>
+<string name="response24">De configurer le nom de l\'application</string>
+<string name="question3">Quel élément graphique permet d\'afficher du texte dans un layout ?</string>
+<string name="response31">Button</string>
+<string name="response32">TextView</string>
+<string name="response33">Label</string>
+<string name="response34">EditText</string>
+<string name="question4">Quel est l\'attribut XML à utiliser pour ajouter de l\'espace autour d\'un élément graphique (et non à l\'intérieur) ?</string>
+<string name="response41">layout_margin</string>
+<string name="response42">layout_width</string>
+<string name="response43">layout_height</string>
+<string name="response44">gravity</string>
+<string name="question5">Comment s\’appelle la classe Android qui centralise l’ensemble des identifiants de toutes les ressources du projet ?</string>
+<string name="response51">La classe R</string>
+<string name="response52">La classe GlobalResources</string>
+<string name="response53">La classe Activity</string>
+<string name="response54">La classe MainConstants</string>
+<string name="goodAnswer">Bonne réponse !</string>
+<string name="badAnswer">Mauvaise réponse !</string>
+<string name="congrats">Bravo!</string>
+<string name="messageScore">"Votre score est de "</string>
+<string name="points">" points."</string>
+<string name="OKbutton">OK</string>
+<string name="welcome">"Bienvenue, "</string>
+<string name="lastScore">"\nVotre meilleur score était de "</string>
+<string name="tryAgain">" points, voulez-vous essayer de battre votre record ?"</string>
+<string name="enterPseudo">"Veuillez entrer un pseudo !"</string>
+</resources>
