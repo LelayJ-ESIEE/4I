@@ -1,10 +1,15 @@
 package com.example.topquiz.controller;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,25 +22,47 @@ import com.example.topquiz.model.QuestionBank;
 import java.util.Arrays;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
+    public static final String TAG = "LELAY";
+    public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
+    public static final String BUNDLE_STATE_QUESTION = "BUNDLE_STATE_QUESTION";
+    public static final String BUNDLE_STATE_SCORE = "BUNDLE_STATE_SCORE";
     private TextView mQuestionTextView;
     private Button mAnswerButton1;
     private Button mAnswerButton2;
     private Button mAnswerButton3;
     private Button mAnswerButton4;
     private QuestionBank mQuestionBank = generateQuestionBank();
+    private boolean mEnableTouchEvents;
     private int mRemainingQuestionCount = 3;
     private int mScore = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Log.d(TAG, "GameActivity : onCreate() called");
+
+        if (savedInstanceState != null) {
+            mScore = savedInstanceState.getInt(BUNDLE_STATE_SCORE);
+            mRemainingQuestionCount = savedInstanceState.getInt(BUNDLE_STATE_QUESTION);
+        } else {
+            mScore = 0;
+            mRemainingQuestionCount = 3;
+        }
+
         setContentView(R.layout.activity_game);
+
+        mEnableTouchEvents = true;
 
         mQuestionTextView = (TextView) findViewById(R.id.game_activity_textview_question);
         mAnswerButton1 = (Button) findViewById(R.id.game_activity_button_1);
         mAnswerButton2 = (Button) findViewById(R.id.game_activity_button_2);
         mAnswerButton3 = (Button) findViewById(R.id.game_activity_button_3);
         mAnswerButton4 = (Button) findViewById(R.id.game_activity_button_4);
+
+        mAnswerButton1.setEnabled(true);
+        mAnswerButton2.setEnabled(true);
+        mAnswerButton3.setEnabled(true);
+        mAnswerButton4.setEnabled(true);
 
         mAnswerButton1.setOnClickListener(this);
         mAnswerButton2.setOnClickListener(this);
@@ -123,6 +150,29 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mAnswerButton4.setText(question.getChoiceList().get(3));
     }
 
+    private void endGame(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Well done!")
+                .setMessage("Your score is " + mScore)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent();
+                        intent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
+                        setResult(RESULT_OK, intent);
+                        finish();
+                    }
+                })
+                .create()
+                .show();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return mEnableTouchEvents && super.dispatchTouchEvent(ev);
+    }
+
     @Override
     public void onClick(View v) {
         int index;
@@ -148,23 +198,56 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         this.mRemainingQuestionCount--;
 
-        if (mRemainingQuestionCount > 0)
-            this.displayQuestion(mQuestionBank.getNextQuestion());
-        else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        mEnableTouchEvents = false;
 
-            builder.setTitle("Well done!")
-                    .setMessage("Your score is " + mScore)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    })
-                    .create()
-                    .show();
-
-            Toast.makeText(this, "End of the game!", Toast.LENGTH_LONG).show();
-        }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mEnableTouchEvents = true;
+                if (mRemainingQuestionCount > 0)
+                    displayQuestion(mQuestionBank.getNextQuestion());
+                else
+                    endGame();
+            }
+        }, 2000);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Log.d(TAG, "GameActivity : onStart() called");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Log.d(TAG, "GameActivity : onResume() called");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Log.d(TAG, "GameActivity : onPause() called");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // Log.d(TAG, "GameActivity : onStop() called");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Log.d(TAG, "GameActivity : onDestroy() called");
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt(BUNDLE_STATE_SCORE, mScore);
+        outState.putInt(BUNDLE_STATE_QUESTION, mRemainingQuestionCount);
+    }
+
 }
