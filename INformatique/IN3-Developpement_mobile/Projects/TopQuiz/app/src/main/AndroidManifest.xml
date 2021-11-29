@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TopQuiz">
         <activity
-            android:name=".MainActivity"
+            android:name=".controller.GameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controller.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
