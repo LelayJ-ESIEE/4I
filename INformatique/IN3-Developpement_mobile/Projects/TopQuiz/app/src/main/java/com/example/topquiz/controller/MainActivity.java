@@ -17,7 +17,7 @@ import com.example.topquiz.R;
 import com.example.topquiz.model.User;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG = "LELAY";
+    public static final String TAG = "MainActivity";
     private static final int GAME_ACTIVITY_REQUEST_CODE = 42;
     private static final String SHARED_PREF_USER_INFO = "SHARED_PREF_USER_INFO";
     private static final String SHARED_PREF_USER_INFO_NAME = "SHARED_PREF_USER_INFO_NAME";
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Log.d(TAG, "MainActivity : onCreate() called");
+        // Log.d(TAG, "onCreate() called");
         setContentView(R.layout.activity_main);
 
         mGreetingTextView = findViewById(R.id.main_textview_greeting);
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         int score = getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getInt(SHARED_PREF_USER_INFO_SCORE, 0);
         if (firstName != null && !firstName.isEmpty()) {
             mUser.setFirstName(firstName);
-            mGreetingTextView.setText("Welcome back, " + mUser.getFirstName() + "!\nYour last score was " + score + ", will you do better this time?");
+            mGreetingTextView.setText(String.format(getString(R.string.welcome_back), mUser.getFirstName(), score));
             mNameEditText.setText(firstName);
             mNameEditText.setSelection(firstName.length() - 1);
             mPlayButton.setEnabled(true);
@@ -91,37 +91,37 @@ public class MainActivity extends AppCompatActivity {
                     .edit()
                     .putInt(SHARED_PREF_USER_INFO_SCORE, score)
                     .apply();
-            mGreetingTextView.setText("Welcome back, " + mUser.getFirstName() + "!\nYour last score was " + score + ", will you do better this time?");
+            mGreetingTextView.setText(String.format(getString(R.string.welcome_back), mUser.getFirstName(), score));
         }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        // Log.d(TAG, "MainActivity : onStart() called");
+        // Log.d(TAG, "onStart() called");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Log.d(TAG, "MainActivity : onResume() called");
+        // Log.d(TAG, "onResume() called");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        // Log.d(TAG, "MainActivity : onPause() called");
+        // Log.d(TAG, "onPause() called");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        // Log.d(TAG, "MainActivity : onStop() called");
+        // Log.d(TAG, "onStop() called");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Log.d(TAG, "MainActivity : onDestroy() called");
+        // Log.d(TAG, "onDestroy() called");
     }
 }

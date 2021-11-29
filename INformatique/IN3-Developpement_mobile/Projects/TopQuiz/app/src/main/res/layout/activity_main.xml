@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:layout_margin="16dp"
         android:padding="8dp"
-        android:text="Welcome in TopQuiz. What's your name ?" />
+        android:text="@string/welcome"/>
 
     <EditText
         android:id="@+id/main_edittext_name"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="16dp"
-        android:hint="Please enter your name"/>
+        android:hint="@string/enter_name"/>
 
     <Button
         android:id="@+id/main_button_play"
@@ -30,6 +30,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="16dp"
-        android:text="Play"/>
+        android:text="@string/play"/>
 
 </LinearLayout>

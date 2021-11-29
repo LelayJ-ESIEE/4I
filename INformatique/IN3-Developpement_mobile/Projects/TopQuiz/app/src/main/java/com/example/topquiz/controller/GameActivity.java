@@ -22,7 +22,7 @@ import com.example.topquiz.model.QuestionBank;
 import java.util.Arrays;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
-    public static final String TAG = "LELAY";
+    public static final String TAG = "GameActivity";
     public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
     public static final String BUNDLE_STATE_QUESTION = "BUNDLE_STATE_QUESTION";
     public static final String BUNDLE_STATE_SCORE = "BUNDLE_STATE_SCORE";
@@ -31,7 +31,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Button mAnswerButton2;
     private Button mAnswerButton3;
     private Button mAnswerButton4;
-    private QuestionBank mQuestionBank = generateQuestionBank();
+    private QuestionBank mQuestionBank;
     private boolean mEnableTouchEvents;
     private int mRemainingQuestionCount = 3;
     private int mScore = 0;
@@ -39,7 +39,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Log.d(TAG, "GameActivity : onCreate() called");
+        // Log.d(TAG, "onCreate() called");
 
         if (savedInstanceState != null) {
             mScore = savedInstanceState.getInt(BUNDLE_STATE_SCORE);
@@ -51,6 +51,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         setContentView(R.layout.activity_game);
 
+        mQuestionBank = generateQuestionBank();
         mEnableTouchEvents = true;
 
         mQuestionTextView = (TextView) findViewById(R.id.game_activity_textview_question);
@@ -74,67 +75,67 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private QuestionBank generateQuestionBank(){
         Question question1 = new Question(
-                "Who is the creator of Android?",
+                getString(R.string.question1),
                 Arrays.asList(
-                        "Andy Rubin",
-                        "Steve Wozniak",
-                        "Jake Wharton",
-                        "Paul Smith"
+                        getString(R.string.answer11),
+                        getString(R.string.answer12),
+                        getString(R.string.answer13),
+                        getString(R.string.answer14)
                 ),
                 0
         );
 
         Question question2 = new Question(
-                "When did the first man land on the moon?",
+                getString(R.string.question2),
                 Arrays.asList(
-                        "1958",
-                        "1962",
-                        "1967",
-                        "1969"
+                        getString(R.string.answer21),
+                        getString(R.string.answer22),
+                        getString(R.string.answer23),
+                        getString(R.string.answer24)
                 ),
                 3
         );
 
         Question question3 = new Question(
-                "What is the house number of The Simpsons?",
+                getString(R.string.question3),
                 Arrays.asList(
-                        "42",
-                        "101",
-                        "666",
-                        "742"
+                        getString(R.string.answer31),
+                        getString(R.string.answer32),
+                        getString(R.string.answer33),
+                        getString(R.string.answer34)
                 ),
                 3
         );
 
         Question question4 = new Question(
-                "What is the number used of the beast?",
+                getString(R.string.question4),
                 Arrays.asList(
-                        "42",
-                        "101",
-                        "666",
-                        "742"
+                        getString(R.string.answer41),
+                        getString(R.string.answer42),
+                        getString(R.string.answer43),
+                        getString(R.string.answer44)
                 ),
                 2
         );
 
         Question question5 = new Question(
-                "What is the number used in american introduction classes?",
+                getString(R.string.question5),
                 Arrays.asList(
-                        "42",
-                        "101",
-                        "666",
-                        "742"
+                        getString(R.string.answer51),
+                        getString(R.string.answer52),
+                        getString(R.string.answer53),
+                        getString(R.string.answer54)
                 ),
                 1
         );
 
         Question question6 = new Question(
-                "What is the answer to the universal question?",
+                getString(R.string.question6),
                 Arrays.asList(
-                        "42",
-                        "101",
-                        "666",
-                        "742"
+                        getString(R.string.answer61),
+                        getString(R.string.answer62),
+                        getString(R.string.answer63),
+                        getString(R.string.answer64)
                 ),
                 0
         );
@@ -215,31 +216,31 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
-        // Log.d(TAG, "GameActivity : onStart() called");
+        // Log.d(TAG, "onStart() called");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Log.d(TAG, "GameActivity : onResume() called");
+        // Log.d(TAG, "onResume() called");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        // Log.d(TAG, "GameActivity : onPause() called");
+        // Log.d(TAG, "onPause() called");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        // Log.d(TAG, "GameActivity : onStop() called");
+        // Log.d(TAG, "onStop() called");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Log.d(TAG, "GameActivity : onDestroy() called");
+        // Log.d(TAG, "onDestroy() called");
     }
 
     @Override
