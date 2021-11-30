@@ -18,42 +18,50 @@ import android.widget.Toast;
 import com.example.topquiz.R;
 import com.example.topquiz.model.Question;
 import com.example.topquiz.model.QuestionBank;
+import com.example.topquiz.model.User;
 
 import java.util.Arrays;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = "GameActivity";
-    public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
+    public static final String BUNDLE_EXTRA_USER = "BUNDLE_EXTRA_USER";
     public static final String BUNDLE_STATE_QUESTION = "BUNDLE_STATE_QUESTION";
     public static final String BUNDLE_STATE_QUESTION_BANK = "BUNDLE_STATE_QUESTION_BANK";
     public static final String BUNDLE_STATE_SCORE = "BUNDLE_STATE_SCORE";
+
     private TextView mQuestionTextView;
     private Button mAnswerButton1;
     private Button mAnswerButton2;
     private Button mAnswerButton3;
     private Button mAnswerButton4;
+
     private QuestionBank mQuestionBank;
     private boolean mEnableTouchEvents;
     private int mRemainingQuestionCount = 3;
-    private int mScore = 0;
+    private User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_game);
         // Log.d(TAG, "onCreate() called");
 
+        Intent intent = getIntent();
+        if (intent.hasExtra(BUNDLE_EXTRA_USER)) {
+            mUser = intent.getParcelableExtra(BUNDLE_EXTRA_USER);
+        }
+
         if (savedInstanceState != null) {
-            mScore = savedInstanceState.getInt(BUNDLE_STATE_SCORE);
+            mUser.setScore(savedInstanceState.getInt(BUNDLE_STATE_SCORE));
             mRemainingQuestionCount = savedInstanceState.getInt(BUNDLE_STATE_QUESTION);
             mQuestionBank = savedInstanceState.getParcelable(BUNDLE_STATE_QUESTION_BANK);
             mQuestionBank.setQuestionIndex(3 - mRemainingQuestionCount);
         } else {
-            mScore = 0;
+            mUser.setScore(0);
             mRemainingQuestionCount = 3;
             mQuestionBank = generateQuestionBank();
         }
 
-        setContentView(R.layout.activity_game);
 
         mEnableTouchEvents = true;
 
@@ -158,18 +166,23 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle("Well done!")
-                .setMessage("Your score is " + mScore)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setMessage("Your score is " + mUser.getScore())
+                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent();
-                        intent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
-                        setResult(RESULT_OK, intent);
                         finish();
                     }
                 })
                 .create()
                 .show();
+    }
+
+    @Override
+    public void finish() {
+        Intent intent = new Intent();
+        intent.putExtra(BUNDLE_EXTRA_USER, mUser);
+        setResult(RESULT_OK, intent);
+        super.finish();
     }
 
     @Override
@@ -194,7 +207,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if(index == mQuestionBank.getCurrentQuestion().getAnswerIndex()) {
-            mScore++;
+            mUser.increaseScore(1);
             Toast.makeText(this, getString(R.string.goodAnswer), Toast.LENGTH_SHORT).show();
         }
         else
@@ -248,7 +261,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putInt(BUNDLE_STATE_SCORE, mScore);
+        outState.putInt(BUNDLE_STATE_SCORE, mUser.getScore());
         outState.putInt(BUNDLE_STATE_QUESTION, mRemainingQuestionCount);
         outState.putParcelable(BUNDLE_STATE_QUESTION_BANK, mQuestionBank);
         super.onSaveInstanceState(outState);

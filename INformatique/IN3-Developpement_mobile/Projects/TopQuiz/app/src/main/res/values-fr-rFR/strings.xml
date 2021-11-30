@@ -36,4 +36,5 @@
     <string name="answer64">742</string>
     <string name="goodAnswer">"Correct !"</string>
     <string name="badAnswer">"FAUX !"</string>
+    <string name="OK">OK</string>
 </resources>
