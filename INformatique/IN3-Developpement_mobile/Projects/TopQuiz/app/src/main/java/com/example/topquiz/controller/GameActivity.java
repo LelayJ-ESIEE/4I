@@ -25,6 +25,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public static final String TAG = "GameActivity";
     public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
     public static final String BUNDLE_STATE_QUESTION = "BUNDLE_STATE_QUESTION";
+    public static final String BUNDLE_STATE_QUESTION_BANK = "BUNDLE_STATE_QUESTION_BANK";
     public static final String BUNDLE_STATE_SCORE = "BUNDLE_STATE_SCORE";
     private TextView mQuestionTextView;
     private Button mAnswerButton1;
@@ -44,14 +45,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if (savedInstanceState != null) {
             mScore = savedInstanceState.getInt(BUNDLE_STATE_SCORE);
             mRemainingQuestionCount = savedInstanceState.getInt(BUNDLE_STATE_QUESTION);
+            mQuestionBank = savedInstanceState.getParcelable(BUNDLE_STATE_QUESTION_BANK);
+            mQuestionBank.setQuestionIndex(3 - mRemainingQuestionCount);
         } else {
             mScore = 0;
             mRemainingQuestionCount = 3;
+            mQuestionBank = generateQuestionBank();
         }
 
         setContentView(R.layout.activity_game);
 
-        mQuestionBank = generateQuestionBank();
         mEnableTouchEvents = true;
 
         mQuestionTextView = (TextView) findViewById(R.id.game_activity_textview_question);
@@ -192,10 +195,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         if(index == mQuestionBank.getCurrentQuestion().getAnswerIndex()) {
             mScore++;
-            Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.goodAnswer), Toast.LENGTH_SHORT).show();
         }
         else
-            Toast.makeText(this, "Wrong!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.badAnswer), Toast.LENGTH_SHORT).show();
 
         this.mRemainingQuestionCount--;
 
@@ -245,10 +248,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-
         outState.putInt(BUNDLE_STATE_SCORE, mScore);
         outState.putInt(BUNDLE_STATE_QUESTION, mRemainingQuestionCount);
+        outState.putParcelable(BUNDLE_STATE_QUESTION_BANK, mQuestionBank);
+        super.onSaveInstanceState(outState);
     }
 
 }
