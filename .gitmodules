@@ -7,3 +7,6 @@
 [submodule "RV"]
 	path = RV
 	url = https://github.com/LelayJ-ESIEE/RV.git
+[submodule "INformatique/IN3-Developpement_mobile/Livrable/TopQuizOnline"]
+	path = INformatique/IN3-Developpement_mobile/Livrable/TopQuizOnline
+	url = https://github.com/LelayJ-ESIEE/TopQuizOnline.git
