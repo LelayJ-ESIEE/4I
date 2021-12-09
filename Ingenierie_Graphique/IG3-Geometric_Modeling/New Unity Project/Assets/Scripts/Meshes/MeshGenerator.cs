@@ -13,7 +13,7 @@ public class MeshGenerator : MonoBehaviour
     void Awake()
     {
         m_Mf = GetComponent<MeshFilter>();
-        
+
         // Explicits
         // m_Mf.sharedMesh = CreateTriangle();
         // m_Mf.sharedMesh = CreateQuadXZ(new Vector3(4, 0, 2));
@@ -21,62 +21,60 @@ public class MeshGenerator : MonoBehaviour
         // m_Mf.sharedMesh = CreatePlane(new Vector3(4, 0, 2), 8, 2);
         
         // Normalized Wraped Planes
-        m_Mf.sharedMesh = WrapNormalizedPlane(200, 100,
-            // Plane
-            //(kX, kZ) => new Vector3(kX, 0, kZ)
-
-            // Cylinder
-            //(kX, kZ) => {
-            //    float theta = kX * 2 * Mathf.PI;
-            //    float y = 4 * kZ;
-            //    float rho = 2;
-            //    return new Vector3(rho * Mathf.Cos(theta), y, rho * Mathf.Sin(theta));
-            //}
-
-            // Inner Sphere
-            //(kX, kZ) =>
-            //{
-            //    float rho = 2;
-            //    float theta = kX * 2 * Mathf.PI;
-            //    float phi = kZ * Mathf.PI;
-            //    return rho * new Vector3(Mathf.Cos(theta) * Mathf.Sin(phi), Mathf.Cos(phi), Mathf.Sin(theta) * Mathf.Sin(phi));
-            //}
-
-            // Sphere
-            (kX, kZ) =>
-            {
+        ComputeVector3FromKxKz lambda;
+        if (CompareTag("Plane"))
+            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+        else if (CompareTag("Cylinder"))
+            lambda = (kX, kZ) => {
+                float theta = kX * 2 * Mathf.PI;
+                float y = 4 * kZ;
+                float rho = 2;
+                return new Vector3(rho * Mathf.Cos(theta), y, rho * Mathf.Sin(theta));
+            };
+        else if (CompareTag("InnerSphere"))
+            lambda = (kX, kZ) => {
+                float rho = 2;
+                float theta = kX * 2 * Mathf.PI;
+                float phi = kZ * Mathf.PI;
+                return rho * new Vector3(Mathf.Cos(theta) * Mathf.Sin(phi), Mathf.Cos(phi), Mathf.Sin(theta) * Mathf.Sin(phi));
+            };
+        else if (CompareTag("Sphere"))
+            lambda = (kX, kZ) => {
                 float rho = 2;
                 float theta = kX * 2 * Mathf.PI;
                 float phi = (1 - kZ) * Mathf.PI;
                 return rho * new Vector3(Mathf.Cos(theta) * Mathf.Sin(phi), Mathf.Cos(phi), Mathf.Sin(theta) * Mathf.Sin(phi));
-            }
+            };
+        else if (CompareTag("Ring"))
+            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+        else if (CompareTag("Helix"))
+            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+        else if (CompareTag("FunnelHelix"))
+            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+        else if (CompareTag("ClosedCylinder"))
+            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+        else if (CompareTag("Torus"))
+            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+        else if (CompareTag("UnregularTorus"))
+            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+        else if (CompareTag("RadialRipple"))
+            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+        else if (CompareTag("InvertedFir"))
+            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+        else if (CompareTag("CrenellatedInvertedFir"))
+            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+        else if (CompareTag("Paraboloid"))
+            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+        else if (CompareTag("ClosedStarBasedPrism"))
+            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+        else if (CompareTag("Tube"))
+            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+        else if (CompareTag("Egg"))
+            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+        else
+            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
 
-            // Ring
-
-            // Helix
-
-            // Funnel Helix
-
-            // Closed Cylinder
-
-            // Torus
-
-            // Unregular Rorus
-
-            // Radial Ripple
-
-            // Inverted Fir
-
-            // Crenellated Inverted Fir
-
-            // Paraboloid
-
-            // Closed Star-based Prism
-
-            // Tube
-
-            // Egg
-        );
+        m_Mf.sharedMesh = WrapNormalizedPlane(200, 100, lambda);
     }
 
     Mesh CreateTriangle()

@@ -3,7 +3,24 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Plane
+  - Cylinder
+  - InnerSphere
+  - Sphere
+  - Ring
+  - Helix
+  - FunnelHelix
+  - ClosedCylinder
+  - Torus
+  - UnregularTorus
+  - RadialRipple
+  - InvertedFir
+  - CrenellatedInvertedFir
+  - Paraboloid
+  - ClosedStarBasedPrism
+  - Tube
+  - Egg
   layers:
   - Default
   - TransparentFX
