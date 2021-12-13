@@ -1,10 +1,10 @@
-# <p align="center">TP5</p>
+# <p align="center">TP6</p>
 
-Le script [src.py](https://github.com/LelayJ-ESIEE/4I/blob/master/Sciences_Ingenieur/SI1-Algebre_avance/TP5/src.py) prend en entrée une liste de points afin de dessiner la courbe de Bezier paramétrée par ceux-ci.
+Le script [src.py](https://github.com/LelayJ-ESIEE/4I/blob/master/Sciences_Ingenieur/SI1-Algebre_avance/TP6/src.py) a deux modes de fonctionnement : par fonction et 
 
-## 1. Entrée
+## 1. Entrée et mode de fonctionnement
 
-Nous pouvons d'abord paramétrer aisément le script en modifiant les valeurs dans les listes suivantes :
+Nous pouvons d'abord paramétrer aisément le script en modifiant les valeurs dans le main, ainsi que sélectionner le mode de fonctionnement en commentant la ligne non-désirée :
 
 ```py
 ##########
