@@ -46,35 +46,68 @@ public class MeshGenerator : MonoBehaviour
                 return rho * new Vector3(Mathf.Cos(theta) * Mathf.Sin(phi), Mathf.Cos(phi), Mathf.Sin(theta) * Mathf.Sin(phi));
             };
         else if (CompareTag("Ring"))
-            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+            lambda = (kX, kZ) => {
+                float theta = kX * 2 * Mathf.PI;
+                float rho = (2 - kZ) * Mathf.PI/2;
+                return new Vector3(rho * Mathf.Cos(theta), 0, rho * Mathf.Sin(theta));
+            };
         else if (CompareTag("Helix"))
-            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+            lambda = (kX, kZ) => {
+                float theta = kX * 2 * Mathf.PI;
+                float y = 4 * kZ * kX;
+                float rho = (2 - kZ) * Mathf.PI / 2;
+                return new Vector3(rho * Mathf.Cos(theta), rho * y, rho * Mathf.Sin(theta));
+            };
         else if (CompareTag("FunnelHelix"))
-            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+            lambda = (kX, kZ) => {
+                return new Vector3(kX, 0, kZ);
+            };
         else if (CompareTag("ClosedCylinder"))
-            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+            lambda = (kX, kZ) => {
+                return new Vector3(kX, 0, kZ);
+            };
         else if (CompareTag("Torus"))
-            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+            lambda = (kX, kZ) => {
+                return new Vector3(kX, 0, kZ);
+            };
         else if (CompareTag("UnregularTorus"))
-            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+            lambda = (kX, kZ) => {
+                return new Vector3(kX, 0, kZ);
+            };
         else if (CompareTag("RadialRipple"))
-            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+            lambda = (kX, kZ) => {
+                return new Vector3(kX, 0, kZ);
+            };
         else if (CompareTag("InvertedFir"))
-            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+            lambda = (kX, kZ) => {
+                return new Vector3(kX, 0, kZ);
+            };
         else if (CompareTag("CrenellatedInvertedFir"))
-            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+            lambda = (kX, kZ) => {
+                return new Vector3(kX, 0, kZ);
+            };
         else if (CompareTag("Paraboloid"))
-            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+            lambda = (kX, kZ) => {
+                return new Vector3(kX, 0, kZ);
+            };
         else if (CompareTag("ClosedStarBasedPrism"))
-            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+            lambda = (kX, kZ) => {
+                return new Vector3(kX, 0, kZ);
+            };
         else if (CompareTag("Tube"))
-            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+            lambda = (kX, kZ) => {
+                return new Vector3(kX, 0, kZ);
+            };
         else if (CompareTag("Egg"))
-            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+            lambda = (kX, kZ) => {
+                return new Vector3(kX, 0, kZ);
+            };
         else
-            lambda = (kX, kZ) => new Vector3(kX, 0, kZ);
+            lambda = (kX, kZ) => {
+                return new Vector3(kX, 0, kZ);
+            };
 
-        m_Mf.sharedMesh = WrapNormalizedPlane(200, 100, lambda);
+        m_Mf.sharedMesh = WrapNormalizedPlane(50, 50, lambda);
     }
 
     Mesh CreateTriangle()
@@ -259,4 +292,6 @@ public class MeshGenerator : MonoBehaviour
         newMesh.RecalculateNormals();
         return newMesh;
     }
+
+
 }
