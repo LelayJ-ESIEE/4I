@@ -1,6 +1,6 @@
 # <p align="center">TP5</p>
 
-Le script [src.py](https://github.com/LelayJ-ESIEE/4I/blob/master/Sciences_Ingenieur/SI1-Algebre_avance/TP5/src.py) prend en entrée une liste de points afin de dessiner la courbe de Bezier paramétrée par ceux-ci.
+Le script [src.py](https://github.com/LelayJ-ESIEE/4I/blob/master/Sciences_Ingenieur/SI1-Algebre_avance/TP5/src.py) prend en entrée deux listes, respectivement d'abscisse et d'ordonnées de points, ainsi que la liste des dérivées en ces points. Il permet d'interpoler des polynômes de degré 3 passant par les points deux à deux et dont les dérivées en ces points correspondent aux dérivées passées en paramètre.
 
 ## 1. Entrée
 
@@ -17,9 +17,9 @@ V = [3, 0, 3, -2, 0]
 n = 500
 ```
 
-## 2. Détermination des points de la courbe de Bezier
+## 2. Détermination polynômes
 
-On évalue ensuite les positions des points de la courbe, en s'appuyant sur les polynomes d'Hermites et les données connues :
+On évalue ensuite les positions des points de la courbe, en s'appuyant sur les polynômes d'Hermites et les données connues :
 
 ```py
 # Hermite's base
