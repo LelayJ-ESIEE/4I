@@ -1,0 +1,14 @@
+Réalisation : Jules LELAY
+
+Fonctionnalités développées :
+	- Intersections Segment-...
+		+ Plan
+		+ Cylindre
+		+ Sphère
+	- Algorithme de subdivision de surface de Catmull-Clark
+
+Scènes respectives :
+	- PrimitivesScene : Intersections Segment-Plan, Semgent-Cylindre infini (représenté fini pour des raisons de lisibilité) et Segment-Sphere, incluant une animation de rotation des objets.
+	- MeshesSubdivisionScene : Subdivision de mesh cubique et "chips" aux subdivisions 0 (base), 1, 2 et 4.
+
+Limitations et bugs connus : 
