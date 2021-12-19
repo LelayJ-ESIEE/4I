@@ -21,6 +21,8 @@ TagManager:
   - ClosedStarBasedPrism
   - Tube
   - Egg
+  - Cube
+  - Chips
   layers:
   - Default
   - TransparentFX

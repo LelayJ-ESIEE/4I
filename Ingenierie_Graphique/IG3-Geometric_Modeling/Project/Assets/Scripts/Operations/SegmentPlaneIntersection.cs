@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SegmentPlaneIntersection : MonoBehaviour
 {
-    [Header("Segment points")]
+    [Header("Segment points (Absolute)")]
     [SerializeField] Vector3 A;
     [SerializeField] Vector3 B;
 
@@ -18,19 +18,7 @@ public class SegmentPlaneIntersection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Segment seg = new Segment(A, B);
-        Plane plane = new Plane(m_Transform.up, m_Transform.position);
-        bool intersecting = interSegmentPlane(seg, plane, out Vector3 interP, out Vector3 interN);
-
         Debug.DrawLine(A, B, Color.red);
-
-        if (intersecting)
-        {
-            //GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            //sphere.transform.position = interP;
-            //sphere.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            Debug.DrawLine(interP, interP+interN, Color.blue);
-        }
     }
     
     bool interSegmentPlane(Segment seg, Plane plane, out Vector3 interPt, out Vector3 interNormal)
@@ -52,5 +40,20 @@ public class SegmentPlaneIntersection : MonoBehaviour
         if (dotABn > 0)
              interNormal = -interNormal;
         return true;
+    }
+
+    void OnDrawGizmos()
+    {
+        Segment seg = new Segment(A, B);
+        Plane plane = new Plane(m_Transform.up, m_Transform.position);
+
+        bool intersecting = interSegmentPlane(seg, plane, out Vector3 interP, out Vector3 interN);
+
+        if (intersecting)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(interP, 0.1f);
+            Debug.DrawLine(interP, interP + interN, Color.blue);
+        }
     }
 }
