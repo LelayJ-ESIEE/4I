@@ -1,31 +1,28 @@
-#define GLEW_STATIC 1
+// seulement si glew32s.lib
+// #define GLEW_STATIC 1
 #include "GL/glew.h"
-#include <GLFW/glfw3.h>
+#include "GLFW/glfw3.h"
+#include "GLShader.h"
 
-#include "../common/GLShader.h"
+#include <stdio.h>
 
-GLShader g_BasicShader;
+uint32_t g_BasicShader;
 
-bool Initialise()
-{
+bool Initialise() {
     GLenum ret = glewInit();
+
+    g_BasicShader = CreateShaderProgram("basic.vs", "basic.fs");
 
     return true;
 }
 
-void Terminate()
-{
-
+void Terminate() {
+    ;
 }
 
-void Render()
-{
-    glClearColor(1.f, 1.f, 0.f, 1.f);
+void Render() {
     glClear(GL_COLOR_BUFFER_BIT);
 }
-
-
-
 
 int main(void)
 {

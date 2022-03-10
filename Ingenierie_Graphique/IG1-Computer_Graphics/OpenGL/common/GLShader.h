@@ -1,98 +1,33 @@
+#pragma once
 
-#ifndef GL_SHADER_H
-#define GL_SHADER_H
+#include <cstdint>
 
-//#include <GL/glew.h>
-#include <stdlib.h>
-#include <string.h>
-
-GLuint LoadShader(const char* filename, GLenum type)
+class GLShader
 {
-    GLuint shader = glCreateShader(type);
-    
-    if (shader != 0)
-    {
-        // toujours ouvrir en mode binaire (evite les conversions)
-        FILE* file = fopen(filename, "rb");
-        fseek(file, 0, SEEK_END);
-        int length = (int)ftell(file);
-        rewind(file);
+private:
+	// un programme fait le liens entre Vertex Shader et Fragment Shader
+	uint32_t m_Program;
+	// Un Vertex Shader est execute pour chaque sommet (vertex)
+	uint32_t m_VertexShader;
+	// Un Geometry Shader est execute pour chaque primitive
+	uint32_t m_GeometryShader;
+	// Un Fragment Shader est execute pour chaque "pixel"
+	// lors de la rasterization/remplissage de la primitive
+	uint32_t m_FragmentShader;
 
-        char* buffer = (char*)malloc(length + 1);      
-        // todo: check buffer
-        fread(buffer, length, 1, file);
-        buffer[length] = 0;
+	bool CompileShader(uint32_t type);
+public:
+	GLShader() : m_Program(0), m_VertexShader(0),
+		m_GeometryShader(0), m_FragmentShader(0) {
 
-        glShaderSource(shader, 1, (const char**)&buffer, NULL);
-        glCompileShader(type);
+	}
+	~GLShader() {}
 
-        GLint compile_status = GL_TRUE;
-        glGetShaderiv(shader, GL_COMPILE_STATUS, &compile_status);
-        if (compile_status != GL_TRUE)
-        {
-            int log_size = 0;
-            glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &log_size);
-            if (log_size > 0)
-            {
-                char* log = (char*)malloc(log_size + 1);
-                glGetShaderInfoLog(shader, log_size, &log_size, log);
-                log[log_size] = 0;
-                printf("[compilation error] in file \"%s\" :\n %s\n", filename, log);
-                free(log);
-            }
-        }
+	inline uint32_t GetProgram() { return m_Program; }
 
-        free(buffer);
-        fclose(file);
-    }
-
-    return shader;
-}
-
-GLuint CreateProgram(GLuint vertex_shader, GLuint fragment_shader)
-{
-    GLuint program = glCreateProgram();
-
-    glAttachShader(program, vertex_shader);
-    glAttachShader(program, fragment_shader);
-    
-    glLinkProgram(program);
-
-    // TODO check link result
- 
-    GLint link_status = GL_TRUE;
-    glGetProgramiv(program, GL_LINK_STATUS, &link_status);
-    if (link_status != GL_TRUE)
-    {
-        int log_size = 0;
-        glGetProgramiv(program, GL_INFO_LOG_LENGTH, &log_size);
-        if (log_size > 0)
-        {
-            char* log = (char*)malloc(log_size + 1);
-            glGetProgramInfoLog(program, log_size, &log_size, log);
-            log[log_size] = 0;
-            printf("[link error] \"%s\" :\n %s\n", log);
-            free(log);
-        }
-    }
-
-    glDeleteShader(fragment_shader);
-    glDeleteShader(vertex_shader);
-
-    return program;
-}
-
-GLuint CreateShaderProgram(const char* vertex_filename, const char* fragment_filename)
-{
-    GLuint vertex_shader = LoadShader(vertex_filename, GL_VERTEX_SHADER);
-    GLuint fragment_shader = LoadShader(fragment_filename, GL_FRAGMENT_SHADER);
-    GLuint program = CreateProgram(vertex_shader, fragment_shader);
-    return program;
-}
-
-GLuint DestroyProgram(GLuint program)
-{
-    glDeleteProgram(program);
-}
-
-#endif // GL_SHADER_H
+	bool LoadVertexShader(const char* filename);
+	bool LoadGeometryShader(const char* filename);
+	bool LoadFragmentShader(const char* filename);
+	bool Create();
+	void Destroy();
+};
