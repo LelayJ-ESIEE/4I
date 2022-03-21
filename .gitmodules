@@ -10,3 +10,6 @@
 [submodule "INformatique/IN3-Developpement_mobile/Livrable/TopQuizOnline"]
 	path = INformatique/IN3-Developpement_mobile/Livrable/TopQuizOnline
 	url = https://github.com/LelayJ-ESIEE/TopQuizOnline.git
+[submodule "Ingenierie_Graphique/IG4-Infographie_3D_(Unreal_Engine)/ActOfTactics"]
+	path = Ingenierie_Graphique/IG4-Infographie_3D_(Unreal_Engine)/ActOfTactics
+	url = https://github.com/LelayJ-ESIEE/ActOfTactics
