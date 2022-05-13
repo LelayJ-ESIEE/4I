@@ -107,7 +107,66 @@ Cours 3 : Évaluation
     * ... Et fournir les détails en cas d'erreur client ! "Qu'est-ce qui ne va pas, **exactement** ?"
     * Ressources nommées au pluriel  
 
-2. Considérations méthodo  
-    1. Gestion des src  
-    2. Q des test  
-    3. Méthodologie TDD
+2. Considérations méthodologiques  
+
+    1. Gestion des sources  
+    Historique, principales commandes Git  
+    Forge Logicielle (~chaîne DevOps)  
+    * Un (ou plusieurs) gestionnaires de versions  
+    * Gestion des tâches  
+    * Outils de suivi d'anomalies  
+    * Gestion documentaire  
+    * Intégration et Déploiements automatisés (CI/CD)  
+
+    2. Qualité des test  
+    
+    Comment assurer la qualité ?  
+    * Ne pas se lancer dans le développement la tête baissée.  
+        Prendre un café avant de coder, y réfléchir **avant**.  
+    * Anticiper le fonctionnel  
+        Le penser. Savoir ce qu'on veut.  
+    * Prévoir une architecture maintenable
+        Même en considérant l'absence de bug, faire en sorte que l'évolution soit aisée **pour les autres**.  
+        Clair, simple. *Keep it simple and stupid*  
+        * Gérer les cas d'erreurs, TOUS AUTANT QUE POSSIBLE, et en étant **VERBEUX**.  
+        ![V](https://www.youtube.com/watch?v=voLrkal39C4)  
+    * Gérer les cas d'erreurs    
+        * Toujours penser à gérer les cas d'erreur dans le code    
+            * Bien gérer les retours HTTP    
+            * User des try/catch    
+        * Même si l'on n'est pas censé le rencontrer !
+            * Ne pas hésiter à lever des exceptions
+            * Anticiper les erreurs de type *Null Reference*
+        * Toujours bien détailler les rapports d'erreur !
+            * Faire des phrases !
+            * Classifier autant que possible les erreurs
+    * Tester et automatiser    
+        * Tests unitaires  
+            * Vérifier une fonction/un programme/un endpoint  
+            * Couvrir les cas nominaux  
+            * Couvrir les cas d'erreur  
+        * Tests fonctionnels  
+            * Vérifier le fonctionnement général  
+            * Couvrir des scénarios complets, si possible de bout-en-bout  
+            * Être le plus proche possible des conditions réelles d'utilisation finale  
+            * Nécessite des jeux de données complets  
+        * Mais comment tester ?  
+            * À l'ancienne : faire des cahiers de test à la main  
+            * À l'arrache : tester c'est douter  
+            * Automatisés : les tests sont programmés  
+
+    3. Méthodologie TDD  
+    * "Test Driven Development"  
+    * Concevoir les tests **avant** le code  
+    * Nécessite de se poser les bonnes questions avant de coder  
+    * Peut être considéré comme une spéc  
+        * Test Unitaires : TDD, "Test Driven Development"  
+        * Test Fonctionnel : BDD, "Behavior Driven Development"  
+    * Avant : tout rouge ; Après : tout vert  
+    * TL;DR : Cycle général :  
+        * Codeur  
+        * Source  
+        * Tests  
+        * Conformité ?  
+            * Oui : Commit  
+            * Non : Loop  
