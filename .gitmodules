@@ -13,3 +13,6 @@
 [submodule "Ingenierie_Graphique/IG4-Unreal_Engine/ActOfTactics"]
 	path = Ingenierie_Graphique/IG4-Unreal_Engine/ActOfTactics
 	url = https://github.com/LelayJ-ESIEE/ActOfTactics
+[submodule "INformatique/IN6-Developpement_Web_Fullstack/Projet"]
+	path = INformatique/IN6-Developpement_Web_Fullstack/Projet
+	url = https://github.com/LelayJ-ESIEE/4I-IN6.git
