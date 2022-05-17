@@ -15,4 +15,7 @@
 	url = https://github.com/LelayJ-ESIEE/ActOfTactics
 [submodule "INformatique/IN6-Developpement_Web_Fullstack/Projet"]
 	path = INformatique/IN6-Developpement_Web_Fullstack/Projet
-	url = https://github.com/LelayJ-ESIEE/4I-IN6.git
+url=https://github.com/LelayJ-ESIEE/quiz-app.git
+[submodule "Ingenierie_Graphique/IG1-Computer_Graphics/Projet"]
+	path = Ingenierie_Graphique/IG1-Computer_Graphics/Projet
+	url = https://github.com/LelayJ-ESIEE/Projet-OpenGL.git
